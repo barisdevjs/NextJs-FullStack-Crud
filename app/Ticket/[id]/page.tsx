@@ -1,3 +1,4 @@
+import TicketForm from "@/app/(components)/TicketForm";
 import React from "react";
 
 interface SubTicketProps {
@@ -7,7 +8,8 @@ interface SubTicketProps {
 }
 
 function SubTicket({ params }: SubTicketProps) {
-  return <div>SubTicket {params.id}</div>;
+  // return <div>SubTicket {params.id}</div>;
+  return <TicketForm />;
 }
 
 export default SubTicket;
