@@ -44,6 +44,7 @@ export default function TicketForm() {
       },
     });
 
+    console.log(res);
     if (!res.ok) {
       throw new Error("Failed to create ticket");
     }
