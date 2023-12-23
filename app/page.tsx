@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 import TicketCard from "./(components)/TicketCard";
 
@@ -35,11 +34,24 @@ export default async function Home() {
   ];
   return (
     <div className="p-5">
-      <div className="lg:grid grid-cols-2 xl:grid-cols-4">
-        <TicketCard />
-        <TicketCard />
-        <TicketCard />
-        <TicketCard />
+      <div>
+        {tickets &&
+          uniqueCategories?.map((uniqueCategory, categoryIndex) => (
+            <div key={categoryIndex} className="mb-4">
+              <h2>{uniqueCategory}</h2>
+              <div className="lg:grid grid-cols-2 xl:grid-cols-4 ">
+                {tickets
+                  .filter((ticket: any) => ticket.category === uniqueCategory)
+                  .map((filteredTicket: any, _index: number) => (
+                    <TicketCard
+                      id={String(_index)}
+                      key={_index}
+                      ticket={filteredTicket}
+                    />
+                  ))}
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );
