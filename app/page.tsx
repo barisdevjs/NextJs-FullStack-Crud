@@ -1,5 +1,6 @@
 import React from "react";
 import TicketCard from "./(components)/TicketCard";
+import { Category, TMongoTicket } from "@/types/generalTypes";
 
 const getTickets = async () => {
   try {
@@ -23,36 +24,33 @@ export default async function Home() {
     return <p>No tickets.</p>;
   }
 
-  const tickets = data.tickets;
-
-  console.log(tickets);
-
+  const tickets: TMongoTicket[] = data.tickets;
   const uniqueCategories = [
-    ...new Set<any>(
-      tickets?.map(({ category }: { category: any }) => category)
+    ...new Set<Category>(
+      tickets?.map(({ category }: { category: Category }) => category)
     ),
   ];
+
   return (
-    <div className="p-5">
-      <div>
-        {tickets &&
-          uniqueCategories?.map((uniqueCategory, categoryIndex) => (
-            <div key={categoryIndex} className="mb-4">
-              <h2>{uniqueCategory}</h2>
-              <div className="lg:grid grid-cols-2 xl:grid-cols-4 ">
-                {tickets
-                  .filter((ticket: any) => ticket.category === uniqueCategory)
-                  .map((filteredTicket: any, _index: number) => (
-                    <TicketCard
-                      id={String(_index)}
-                      key={_index}
-                      ticket={filteredTicket}
-                    />
-                  ))}
-              </div>
+    <div className="m-4">
+      {tickets &&
+        uniqueCategories?.map((uniqueCategory, categoryIndex) => (
+          <div key={categoryIndex} className="mb-4">
+            <h2 className="pl-2">{uniqueCategory}</h2>
+            <div className="lg:grid grid-cols-2 xl:grid-cols-4 ">
+              {tickets
+                .filter(
+                  (ticket: TMongoTicket) => ticket.category === uniqueCategory
+                )
+                .map((filteredTicket: TMongoTicket) => (
+                  <TicketCard
+                    key={filteredTicket._id}
+                    ticket={filteredTicket}
+                  />
+                ))}
             </div>
-          ))}
-      </div>
+          </div>
+        ))}
     </div>
   );
 }

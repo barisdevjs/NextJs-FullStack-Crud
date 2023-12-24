@@ -1,4 +1,7 @@
-let options: Intl.DateTimeFormatOptions = {
+import { Category } from "@/types/generalTypes";
+
+/////////////////////////      DATE_TIME FORMATTER    /////////////////////////
+const options: Intl.DateTimeFormatOptions = {
   weekday: "long",
   year: "numeric",
   month: "2-digit",
@@ -8,3 +11,12 @@ let options: Intl.DateTimeFormatOptions = {
 export function dateFormatTr(date: string): string {
   return new Intl.DateTimeFormat("tr", options).format(new Date(date));
 }
+
+/////////////////////////      CATEGORIES    /////////////////////////
+
+export const categories: Category[] = [
+  Category.HardwareProblem,
+  Category.SoftwareProblem,
+  Category.ApplicationDevelopment,
+  Category.Project,
+];

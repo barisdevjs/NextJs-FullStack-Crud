@@ -38,4 +38,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - import { useRouter } from "next/navigation"; There are 2 different of them
 - import { useRouter } from "next/router"; Discover
 
-136
+types
+DeleteBlock ??
+PriorityDisplay ??
+ProgressBar ??

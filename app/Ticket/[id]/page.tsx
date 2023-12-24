@@ -23,21 +23,21 @@ const getTicketById = async (id: string) => {
   }
 };
 
-let updateTicketData = {} as any;
+let updatedTicketData = {} as any;
 
 async function SubTicket({ params }: SubTicketProps) {
   const EDITMODE = params.id !== "new";
 
   if (EDITMODE) {
-    updateTicketData = await getTicketById(params.id);
-    updateTicketData = updateTicketData.foundTicket;
+    updatedTicketData = await getTicketById(params.id);
+    console.log(updatedTicketData);
   } else {
-    updateTicketData = {
+    updatedTicketData = {
       _id: "new",
     };
   }
 
-  return <TicketForm />;
+  return <TicketForm ticket={updatedTicketData} />;
 }
 
 export default SubTicket;

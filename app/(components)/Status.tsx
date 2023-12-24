@@ -1,9 +1,8 @@
+import { TStatus } from "@/types/generalTypes";
 import React from "react";
 
-type StatusT = "done" | "started" | "not started" | null;
-
 interface StatusProps {
-  status: StatusT | string;
+  status: TStatus | string;
 }
 
 export default function Status({ status }: StatusProps) {

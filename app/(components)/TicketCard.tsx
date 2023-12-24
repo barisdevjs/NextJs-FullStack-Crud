@@ -4,19 +4,16 @@ import PriorityDisplay from "./PriorityDisplay";
 import ProgressBar from "./ProgressBar";
 import Status from "./Status";
 import Link from "next/link";
+import { TMongoTicket } from "@/types/generalTypes";
 
-interface TicketCardProps {
-  id: string;
-  ticket: any;
-}
-
-function TicketCard({ ticket }: TicketCardProps) {
+function TicketCard({ ticket }: { ticket: TMongoTicket }) {
+  console.log({ ticket });
   return (
     <div className="flex flex-col hover:bg-card-hover bg-card rounded-md shadow-lg p-3 m-2">
       <div className="flex mb-3">
         <PriorityDisplay priority={ticket.priority} />
         <div className="ml-auto">
-          <DeleteBlock id={ticket._id} />
+          <DeleteBlock _id={ticket._id} />
         </div>
       </div>
       <Link href={`/Ticket/${ticket._id}`} style={{ display: "contents" }}>

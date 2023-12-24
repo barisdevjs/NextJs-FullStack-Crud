@@ -1,18 +1,16 @@
 "use client";
 
+import { categories } from "@/libs/utils";
+import { TMongoTicket } from "@/types/generalTypes";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const categories = [
-  "Hardware Problem",
-  "Software Problem",
-  "Application Deveopment",
-  "Project",
-];
-
-export default function TicketForm() {
+export default function TicketForm({ ticket }: { ticket: TMongoTicket }) {
+  console.log("ticket");
+  console.log(ticket);
+  const EDIT_MODE = ticket._id !== "new";
   const router = useRouter();
-  const startingTicketData = {
+  const initialTicketData = {
     title: "",
     description: "",
     priority: 4,
@@ -21,7 +19,16 @@ export default function TicketForm() {
     category: "Hardware Problem",
   };
 
-  const [formData, setFormData] = useState(startingTicketData);
+  if (EDIT_MODE) {
+    initialTicketData["title"] = ticket.title;
+    initialTicketData["description"] = ticket.description;
+    initialTicketData["priority"] = ticket.priority;
+    initialTicketData["progress"] = ticket.progress;
+    initialTicketData["status"] = ticket.status;
+    initialTicketData["category"] = ticket.category;
+  }
+
+  const [formData, setFormData] = useState(initialTicketData);
 
   const handleChange = (e: any) => {
     const value = e.target.value;
@@ -36,17 +43,30 @@ export default function TicketForm() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    const res = await fetch("/api/Tickets", {
-      method: "POST",
-      body: JSON.stringify({ formData }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    console.log(res);
-    if (!res.ok) {
-      throw new Error("Failed to create ticket");
+    if (EDIT_MODE) {
+      const res = await fetch(`/api/Tickets/${ticket._id}`, {
+        method: "PUT",
+        body: JSON.stringify({ formData }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(res);
+      if (!res.ok) {
+        throw new Error("Failed to update ticket");
+      }
+    } else {
+      const res = await fetch("/api/Tickets", {
+        method: "POST",
+        body: JSON.stringify({ formData }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(res);
+      if (!res.ok) {
+        throw new Error("Failed to create ticket");
+      }
     }
 
     router.refresh();
@@ -60,7 +80,7 @@ export default function TicketForm() {
         method="post"
         onSubmit={handleSubmit}
       >
-        <h3>Create Your Ticket</h3>
+        <h3>{EDIT_MODE ? "Update" : "Create"} Ticket</h3>
         <label>Title</label>
         <input
           id="title"
@@ -158,7 +178,7 @@ export default function TicketForm() {
         <input
           type="submit"
           className="btn max-w-xs"
-          value={true ? "Update Ticket" : "Create Ticket"}
+          value={EDIT_MODE ? "Update Ticket" : "Create Ticket"}
         />
       </form>
     </div>
