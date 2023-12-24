@@ -3,11 +3,9 @@
 import { categories } from "@/libs/utils";
 import { TMongoTicket } from "@/types/generalTypes";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 
 export default function TicketForm({ ticket }: { ticket: TMongoTicket }) {
-  console.log("ticket");
-  console.log(ticket);
   const EDIT_MODE = ticket._id !== "new";
   const router = useRouter();
   const initialTicketData = {
@@ -40,7 +38,7 @@ export default function TicketForm({ ticket }: { ticket: TMongoTicket }) {
     }));
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
 
     if (EDIT_MODE) {
@@ -105,8 +103,8 @@ export default function TicketForm({ ticket }: { ticket: TMongoTicket }) {
           value={formData.category}
           onChange={handleChange}
         >
-          {categories?.map((category, _index) => (
-            <option key={_index} value={category}>
+          {categories?.map((category) => (
+            <option key={category} value={category}>
               {category}
             </option>
           ))}

@@ -7,7 +7,6 @@ import Link from "next/link";
 import { TMongoTicket } from "@/types/generalTypes";
 
 function TicketCard({ ticket }: { ticket: TMongoTicket }) {
-  console.log({ ticket });
   return (
     <div className="flex flex-col hover:bg-card-hover bg-card rounded-md shadow-lg p-3 m-2">
       <div className="flex mb-3">

@@ -1,11 +1,7 @@
-import { TStatus } from "@/types/generalTypes";
+import { TMongoTicket } from "@/types/generalTypes";
 import React from "react";
 
-interface StatusProps {
-  status: TStatus | string;
-}
-
-export default function Status({ status }: StatusProps) {
+export default function Status({ status }: { status: TMongoTicket["status"] }) {
   const getColor = (status: string | null) => {
     switch (status?.toLowerCase()) {
       case "done":

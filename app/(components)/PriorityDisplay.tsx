@@ -1,8 +1,13 @@
+import { TMongoTicket } from "@/types/generalTypes";
 import { faFire } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-export default function PriorityDisplay({ priority }: { priority: number }) {
+export default function PriorityDisplay({
+  priority,
+}: {
+  priority: TMongoTicket["priority"];
+}) {
   return (
     <div className="flex justify-start align-baseline">
       <FontAwesomeIcon

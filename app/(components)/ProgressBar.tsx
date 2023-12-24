@@ -1,6 +1,11 @@
+import { TMongoTicket } from "@/types/generalTypes";
 import React from "react";
 
-export default function ProgressBar({ progress }: { progress: number }) {
+export default function ProgressBar({
+  progress,
+}: {
+  progress: TMongoTicket["progress"];
+}) {
   return (
     <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
       <div

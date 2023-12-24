@@ -1,10 +1,11 @@
 "use client";
 
+import { TMongoTicket } from "@/types/generalTypes";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 
-const DeleteBlock = ({ _id }: { _id: string }) => {
+const DeleteBlock = ({ _id }: { _id: TMongoTicket["_id"] }) => {
   const router = useRouter();
 
   const deleteTicket = async () => {
