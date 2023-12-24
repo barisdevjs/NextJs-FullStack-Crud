@@ -1,7 +1,7 @@
 "use client";
 
 import { categories } from "@/libs/utils";
-import { TMongoTicket } from "@/types/generalTypes";
+import { Category, TMongoTicket } from "@/types/generalTypes";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
 
@@ -14,7 +14,7 @@ export default function TicketForm({ ticket }: { ticket: TMongoTicket }) {
     priority: 4,
     progress: 0,
     status: "not started",
-    category: "Hardware Problem",
+    category: "HardwareProblem",
   };
 
   if (EDIT_MODE) {
@@ -28,12 +28,16 @@ export default function TicketForm({ ticket }: { ticket: TMongoTicket }) {
 
   const [formData, setFormData] = useState(initialTicketData);
 
-  const handleChange = (e: any) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const value = e.target.value;
     const name = e.target.name;
 
-    setFormData((preState) => ({
-      ...preState,
+    setFormData((prevState) => ({
+      ...prevState,
       [name]: value,
     }));
   };
