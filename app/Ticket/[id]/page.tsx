@@ -30,7 +30,6 @@ async function SubTicket({ params }: SubTicketProps) {
 
   if (EDITMODE) {
     updatedTicketData = await getTicketById(params.id);
-    console.log(updatedTicketData);
   } else {
     updatedTicketData = {
       _id: "new",

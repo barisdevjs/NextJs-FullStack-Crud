@@ -1,4 +1,4 @@
-import { Category } from "@/types/generalTypes";
+import { Category, TMongoTicket } from "@/types/generalTypes";
 
 /////////////////////////      DATE_TIME FORMATTER    /////////////////////////
 const options: Intl.DateTimeFormatOptions = {
@@ -20,3 +20,16 @@ export const categories: Category[] = [
   Category.ApplicationDevelopment,
   Category.Project,
 ];
+
+export interface GetResponse {
+  tickets: TMongoTicket[];
+}
+
+export interface ErrorResponse {
+  message: string;
+  err: Error;
+}
+
+export interface GetSingleTicketResponse {
+  ticket: TMongoTicket;
+}

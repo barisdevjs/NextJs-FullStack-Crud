@@ -1,8 +1,9 @@
 import React from "react";
 import TicketCard from "./(components)/TicketCard";
 import { Category, TMongoTicket } from "@/types/generalTypes";
+import { GetResponse } from "@/libs/utils";
 
-const getTickets = async () => {
+const getTickets = async (): Promise<GetResponse | undefined> => {
   try {
     const res = await fetch("http://localhost:3000/api/Tickets", {
       cache: "no-store",

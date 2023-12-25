@@ -45,34 +45,22 @@ export default function TicketForm({ ticket }: { ticket: TMongoTicket }) {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
 
-    if (EDIT_MODE) {
-      const res = await fetch(`/api/Tickets/${ticket._id}`, {
-        method: "PUT",
-        body: JSON.stringify({ formData }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      console.log(res);
-      if (!res.ok) {
-        throw new Error("Failed to update ticket");
-      }
-    } else {
-      const res = await fetch("/api/Tickets", {
-        method: "POST",
-        body: JSON.stringify({ formData }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      console.log(res);
-      if (!res.ok) {
-        throw new Error("Failed to create ticket");
-      }
-    }
+    const url = EDIT_MODE ? `/api/Tickets/${ticket._id}` : "/api/Tickets";
+    const method = EDIT_MODE ? "PUT" : "POST";
 
+    const res = await fetch(url, {
+      method,
+      body: JSON.stringify({ formData }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error(`Failed to ${EDIT_MODE ? "update" : "create"} ticket`);
+    }
+    router.push("/");
     router.refresh();
-    router.push("/"); // try to navigate another route exercise
   };
 
   return (
