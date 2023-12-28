@@ -33,12 +33,15 @@ export default async function Home() {
   ];
 
   return (
-    <div className="m-4">
+    <div className="p-4 lg:grid gap-4 grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
       {tickets &&
         uniqueCategories?.map((uniqueCategory, categoryIndex) => (
-          <div key={categoryIndex} className="mb-4">
-            <h2 className="pl-2">{uniqueCategory}</h2>
-            <div className="lg:grid grid-cols-2 xl:grid-cols-4 ">
+          <div
+            key={categoryIndex}
+            className="mb-4 border-yellow-400 border-2 border-dashed"
+          >
+            <h4 className="pl-2">{uniqueCategory}</h4>
+            <div className="lg:grid grid-cols-2">
               {tickets
                 .filter(
                   (ticket: TMongoTicket) => ticket.category === uniqueCategory

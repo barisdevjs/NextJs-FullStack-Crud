@@ -7,7 +7,7 @@ export enum Category {
   Project = "Project",
 }
 
-export type TStatus = "done" | "started" | "not started";
+export type TStatus = "done" | "started" | "todo";
 
 export type TMongoTicket = {
   _id: string;

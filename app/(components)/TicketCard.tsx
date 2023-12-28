@@ -8,7 +8,7 @@ import { TMongoTicket } from "@/types/generalTypes";
 
 function TicketCard({ ticket }: { ticket: TMongoTicket }) {
   return (
-    <div className="flex flex-col hover:bg-card-hover bg-card rounded-md shadow-lg p-3 m-2">
+    <div className="flex flex-col hover:bg-card-hover bg-card rounded-md shadow-lg p-3 m-2 min-h-[12rem]">
       <div className="flex mb-3">
         <PriorityDisplay priority={ticket.priority} />
         <div className="ml-auto">
@@ -16,8 +16,8 @@ function TicketCard({ ticket }: { ticket: TMongoTicket }) {
         </div>
       </div>
       <Link href={`/Ticket/${ticket._id}`} style={{ display: "contents" }}>
-        <h4>{ticket.title}</h4>
-        <hr className="h-px border-0 bg-page mb-2" />
+        <h6>{ticket.title}</h6>
+        <hr className="h-px border-0 bg-yellow-200 mb-2" />
         <p className="whitespace-pre-wrap">{ticket.description}</p>
         <div className="flex-grow"></div>
         <div className="flex mt-2">

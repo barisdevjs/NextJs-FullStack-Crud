@@ -1,7 +1,7 @@
 "use client";
 
 import { categories } from "@/libs/utils";
-import { Category, TMongoTicket } from "@/types/generalTypes";
+import { TMongoTicket } from "@/types/generalTypes";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
 

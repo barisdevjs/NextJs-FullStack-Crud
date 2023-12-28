@@ -8,7 +8,7 @@ export default function Status({ status }: { status: TMongoTicket["status"] }) {
         return "bg-green-200";
       case "started":
         return "bg-yellow-200";
-      case "not started":
+      case "todo":
         return "bg-red-200";
       default:
         return "bg-slate-700";
