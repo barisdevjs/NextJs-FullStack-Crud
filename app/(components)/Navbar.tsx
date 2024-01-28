@@ -1,4 +1,11 @@
-import { faHome, faTicket } from "@fortawesome/free-solid-svg-icons";
+import {
+  faDashboard,
+  faHome,
+  faLock,
+  faTicket,
+  faUnlock,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import React from "react";
@@ -12,6 +19,18 @@ function Navbar() {
         </Link>
         <Link href="/Ticket/new">
           <FontAwesomeIcon icon={faTicket} className="icon" />
+        </Link>
+        <Link href="/Ticket">
+          <FontAwesomeIcon icon={faDashboard} className="icon" />
+        </Link>
+        <Link href="/Member">
+          <FontAwesomeIcon icon={faLock} className="icon" />
+        </Link>
+        <Link href="/ClientMember">
+          <FontAwesomeIcon icon={faUnlock} className="icon" />
+        </Link>
+        <Link href="/CreateUser">
+          <FontAwesomeIcon icon={faUser} className="icon" />
         </Link>
       </div>
       <div>

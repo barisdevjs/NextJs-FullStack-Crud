@@ -1,6 +1,5 @@
 import Ticket from "@/app/(models)/Ticket";
 import { ErrorResponse, GetResponse } from "@/libs/utils";
-import { TMongoTicket } from "@/types/generalTypes";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(): Promise<
