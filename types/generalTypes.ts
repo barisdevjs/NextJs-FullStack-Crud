@@ -21,3 +21,10 @@ export type TMongoTicket = {
   updatedAt: string;
   __v: number;
 };
+
+/************* USER *************/
+export interface IUser {
+  name: string;
+  email: string;
+  password: string;
+}

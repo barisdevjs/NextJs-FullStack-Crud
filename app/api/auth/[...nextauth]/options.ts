@@ -7,7 +7,7 @@ export const options = {
       clientId: process.env.GITHUB_ID as string,
       clientSecret: process.env.GITHUB_SECRET as string,
       profile(profile) {
-        console.log("Profile Github: ", profile);
+        // console.log("Profile Github: ", profile);
 
         let userRole = "Github User";
         if (profile.email === "barissavas17@gmail.com") {
@@ -25,7 +25,7 @@ export const options = {
       clientId: process.env.GOOGLE_ID as string,
       clientSecret: process.env.GOOGLE_SECRET as string,
       profile(profile) {
-        console.log("Profile Google: ", profile);
+        // console.log("Profile Google: ", profile);
 
         let userRole = "Google User";
 

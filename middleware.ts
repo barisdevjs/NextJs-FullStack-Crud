@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export default withAuth(
   function middleware(req) {
-    console.log(JSON.stringify(req, null, 2));
+    // console.log(JSON.stringify(req, null, 2));
 
     if (
       req.nextUrl.pathname.startsWith("/CreateUser") &&
