@@ -8,6 +8,7 @@ const initialFormData: IUser = {
   name: "",
   email: "",
   password: "",
+  id:""
 };
 
 function UserForm() {

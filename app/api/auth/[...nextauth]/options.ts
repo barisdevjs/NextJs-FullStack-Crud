@@ -1,5 +1,10 @@
+import CredentialsProvider from "next-auth/providers/credentials";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+import { IUser } from "@/types/generalTypes";
+import User from "@/app/(models)/User";
+import bcrypt from "bcrypt";
+import { RequestInternal } from "next-auth";
 
 export const options = {
   providers: [
@@ -34,6 +39,44 @@ export const options = {
           id: profile.sub,
           role: userRole,
         };
+      },
+    }),
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: {
+          label: "email:",
+          type: "text",
+          placeholder: "your email",
+        },
+        password: {
+          label: "password:",
+          type: "password",
+          placeholder: "your password",
+        },
+      },
+      async authorize(
+        credentials: Record<"email" | "password", string> | undefined
+      ): Promise<IUser | null> {
+        try {
+          const foundUser = (await User.findOne({ email: credentials?.email })
+            .lean()
+            .exec()) as IUser | null;
+          if (foundUser && foundUser.password) {
+            console.log("User Exist");
+            const match = await bcrypt.compare(
+              credentials?.password as string,
+              foundUser.password
+            );
+            if (match) {
+              return foundUser as IUser;
+            }
+          }
+          return null;
+        } catch (error) {
+          console.error("Authentication error:", error);
+          throw error;
+        }
       },
     }),
   ],
