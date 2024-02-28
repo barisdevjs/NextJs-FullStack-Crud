@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning={true}>
         <div className="flex flex-col h-screen max-h-screen">
           <Navbar />
           <div className="flex-grow overflow-y-auto bg-page text-default-text">

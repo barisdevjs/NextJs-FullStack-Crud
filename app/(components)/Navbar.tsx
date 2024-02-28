@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { options } from "../api/auth/[...nextauth]/options";
+import Image from "next/image";
 
 async function Navbar() {
   const session = await getServerSession(options);
@@ -35,14 +36,18 @@ async function Navbar() {
         <Link href="/CreateUser">
           <FontAwesomeIcon icon={faUser} className="icon" />
         </Link>
-        {session ? (
-          <Link href="api/auth/signout?callbackUrl=/">Logout</Link>
-        ) : (
-          <Link href="api/auth/signin">Login</Link>
-        )}
       </div>
-      <div>
-        <p className=" text-default-text">jake.lower17@gmail.com</p>
+      <div className="flex gap-x-4 justify-center items-center">
+        <p className=" text-default-text">{session?.user?.name ?? ""}</p>
+        {session ? (
+          <p className=" text-default-text">
+            <Link href="api/auth/signout?callbackUrl=/">Logout</Link>
+          </p>
+        ) : (
+          <p className=" text-default-text">
+            <Link href="api/auth/signin">Login</Link>
+          </p>
+        )}
       </div>
     </nav>
   );

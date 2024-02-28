@@ -167,7 +167,7 @@ export default function TicketForm({ ticket }: { ticket: TMongoTicket }) {
         </select>
         <input
           type="submit"
-          className="btn max-w-xs"
+          className="btn w-auto mx-auto px-12"
           value={EDIT_MODE ? "Update Ticket" : "Create Ticket"}
         />
       </form>
